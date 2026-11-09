@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future Ai - تطبيق المستقبل للنمو النفسي والإيماني</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            dark: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Cairo', sans-serif; }
+        .glass-dark { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+        .glass-light { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0, 0, 0, 0.08); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- Top Header -->
+    <header id="main-header" class="sticky top-0 z-50 glass-light dark:glass-dark px-4 py-3 flex items-center justify-between transition-all">
+        <div class="flex items-center space-x-3 space-x-reverse">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white shadow-lg shadow-emerald-500/20">
+                <i class="fa-solid fa-brain text-lg"></i>
+            </div>
+            <div>
+                <h1 class="font-bold text-lg leading-tight tracking-wide">Future Ai</h1>
+                <span class="text-xs text-emerald-600 dark:text-emerald-400 font-medium">الإصدار 1.2.0 • 2026</span>
+            </div>
+        </div>
+
+        <div class="flex items-center space-x-2 space-x-reverse">
+            <!-- Theme Toggle -->
+            <button onclick="toggleTheme()" class="w-9 h-9 rounded-xl bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-yellow-400 hover:scale-105 transition">
+                <i id="theme-icon" class="fa-solid fa-moon text-sm"></i>
+            </button>
+            <!-- User Profile / Login Button -->
+            <div id="auth-container">
+                <button onclick="openLoginModal()" class="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-md shadow-emerald-600/20 transition flex items-center gap-1.5">
+                    <i class="fa-brands fa-google text-xs"></i> دخول
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 max-w-4xl w-full mx-auto p-4 pb-28">
+        
+        <!-- SECTION: Home (الرئيسية) -->
+        <section id="sec-home" class="space-y-6">
+            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-600 to-teal-800 p-6 text-white shadow-xl">
+                <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
+                <div class="relative z-10">
+                    <span class="px-3 py-1 rounded-full bg-white/20 text-xs font-medium backdrop-blur-md">مساحتك الآمنة للتطور</span>
+                    <h2 id="welcome-user-title" class="text-2xl font-bold mt-3">أهلاً بك يا زائرنا الكريم ✨</h2>
+                    <p class="text-emerald-100 text-sm mt-1 leading-relaxed">اجمع بين علوم النفس الحديثة والهدايات الإسلامية لنفس أصفى وقلب أطمئن.</p>
+                </div>
+            </div>
+
+            <!-- Daily Quote Card -->
+            <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 text-xs font-bold mb-2">
+                    <i class="fa-solid fa-lightbulb"></i> إشراقة المنارة اليومية
+                </div>
+                <p id="daily-quote-text" class="text-sm italic leading-relaxed text-slate-600 dark:text-slate-300">"إن المعية الإلهية ليست مجرد نصر، بل هي سَكينة تزلزل المخاوف وتبدّل العسر يسراً."</p>
+            </div>
+
+            <!-- Quick Navigation Grid -->
+            <div class="grid grid-cols-2 gap-3">
+                <button onclick="switchTab('compass')" class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 text-right transition group shadow-sm">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center mb-3 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-compass text-lg"></i>
+                    </div>
+                    <h3 class="font-bold text-sm">بوصلتك النفسية</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">اختبار الـ 40 سؤالاً للنمط</p>
+                </button>
+                <button onclick="switchTab('consultant')" class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 text-right transition group shadow-sm">
+                    <div class="w-10 h-10 rounded-xl bg-teal-500/10 text-teal-600 flex items-center justify-center mb-3 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-comments text-lg"></i>
+                    </div>
+                    <h3 class="font-bold text-sm">مستشارك الذكي</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">شات بوت محلي متطور</p>
+                </button>
+                <button onclick="switchTab('lighthouse')" class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 text-right transition group shadow-sm">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center mb-3 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-tower-observation text-lg"></i>
+                    </div>
+                    <h3 class="font-bold text-sm">المنارة الإيمانية</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">100 توجيه وإرشاد</p>
+                </button>
+                <button onclick="switchTab('challenges')" class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 text-right transition group shadow-sm">
+                    <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-600 flex items-center justify-center mb-3 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-bullseye text-lg"></i>
+                    </div>
+                    <h3 class="font-bold text-sm">تحديات النمو</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">50 خطوة عملية للنجاح</p>
+                </button>
+            </div>
+        </section>
+
+        <!-- SECTION: Compass (بوصلتك - MBTI) -->
+        <section id="sec-compass" class="hidden space-y-6">
+            <div class="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="flex justify-between items-center mb-4">
+                    <span id="quiz-progress-label" class="text-xs font-bold text-emerald-600 dark:text-emerald-400">السؤال 1 من 40</span>
+                    <span id="quiz-percentage" class="text-xs text-slate-400">2.5%</span>
+                </div>
+                <div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden mb-6">
+                    <div id="quiz-progress-bar" class="bg-emerald-600 h-full transition-all duration-300" style="width: 2.5%;"></div>
+                </div>
+
+                <h3 id="quiz-question-text" class="text-lg font-bold mb-6 leading-relaxed">تحب التعامل مع الأنشطة الجماعية أكثر من العمل الفردي المنعزل؟</h3>
+
+                <!-- 3-Option Scale -->
+                <div class="space-y-3" id="quiz-options-container">
+                    <button onclick="answerQuiz(1)" class="w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 border border-slate-200 dark:border-slate-700/60 text-right font-medium text-sm transition flex items-center justify-between">
+                        <span>نعم، يمثلني بشدة</span>
+                        <i class="fa-solid fa-circle-check text-slate-300 dark:text-slate-600"></i>
+                    </button>
+                    <button onclick="answerQuiz(0)" class="w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 border border-slate-200 dark:border-slate-700/60 text-right font-medium text-sm transition flex items-center justify-between">
+                        <span>محايد (بين هذا وذاك)</span>
+                        <i class="fa-solid fa-circle text-slate-300 dark:text-slate-600 text-xs"></i>
+                    </button>
+                    <button onclick="answerQuiz(-1)" class="w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 border border-slate-200 dark:border-slate-700/60 text-right font-medium text-sm transition flex items-center justify-between">
+                        <span>لا، لا يمثلني</span>
+                        <i class="fa-solid fa-circle-xmark text-slate-300 dark:text-slate-600"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Result Box (Hidden by default) -->
+            <div id="quiz-result-box" class="hidden p-6 rounded-3xl bg-emerald-600 text-white shadow-xl text-center space-y-4">
+                <div class="w-16 h-16 bg-white/20 rounded-2xl mx-auto flex items-center justify-center text-2xl font-bold">
+                    <i class="fa-solid fa-award"></i>
+                </div>
+                <div>
+                    <h4 class="text-xs uppercase tracking-wider text-emerald-200 font-semibold">نتيجة نمط شخصيتك</h4>
+                    <h2 id="result-mbti-type" class="text-3xl font-extrabold mt-1">INTJ</h2>
+                </div>
+                <p id="result-mbti-desc" class="text-sm text-emerald-100 max-w-md mx-auto leading-relaxed">شخصية المهندس والمخطط الاستراتيجي؛ تتميز بالعمق الفكري والقدرة الفائقة على تنظيم الأفكار وتحويلها إلى واقع عملي.</p>
+                <button onclick="restartQuiz()" class="px-6 py-2.5 rounded-xl bg-white text-emerald-800 font-bold text-sm shadow-md hover:bg-emerald-50 transition">إعادة الاختبار</button>
+            </div>
+        </section>
+
+        <!-- SECTION: Consultant (مستشارك - Local AI Chat) -->
+        <section id="sec-consultant" class="hidden flex flex-col h-[75vh]">
+            <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mb-3 flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-teal-500/10 text-teal-600 flex items-center justify-center">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-sm">مستشارك النفسي والإيماني</h3>
+                    <p class="text-xs text-emerald-600 dark:text-emerald-400">متصل محلياً بذكاء استشاري متطور (أوفلاين)</p>
+                </div>
+            </div>
+
+            <!-- Chat Messages Container -->
+            <div id="chat-messages" class="flex-1 overflow-y-auto space-y-3 p-4 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hide-scrollbar">
+                <div class="flex gap-3 max-w-[85%]">
+                    <div class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs flex-shrink-0">AI</div>
+                    <div class="p-3.5 rounded-2xl rounded-tr-none bg-slate-100 dark:bg-slate-800 text-sm leading-relaxed">
+                        أهلاً بك. أنا مستشارك الذكي. هل تشعر بالقلق، التشتت، أو تود الحديث عن أمر يشغل بالك اليوم؟ اسألني بما شئت.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Suggestion Chips -->
+            <div class="flex gap-2 py-2 overflow-x-auto hide-scrollbar">
+                <button onclick="sendPresetChat('أشعر بالقلق والتوتر الدائم')" class="px-3 py-1.5 rounded-full bg-slate-200 dark:bg-slate-800 text-xs font-medium whitespace-nowrap hover:bg-emerald-600 hover:text-white transition">أشعر بالقلق والتوتر</button>
+                <button onclick="sendPresetChat('كيف أقوي علاقتي بالله؟')" class="px-3 py-1.5 rounded-full bg-slate-200 dark:bg-slate-800 text-xs font-medium whitespace-nowrap hover:bg-emerald-600 hover:text-white transition">كيف أقوي علاقتي بالله؟</button>
+                <button onclick="sendPresetChat('عندي تسويف وتأجيل مستمر')" class="px-3 py-1.5 rounded-full bg-slate-200 dark:bg-slate-800 text-xs font-medium whitespace-nowrap hover:bg-emerald-600 hover:text-white transition">أعاني من التسويف</button>
+            </div>
+
+            <!-- Chat Input Bar -->
+            <div class="mt-2 flex gap-2">
+                <input id="chat-input" type="text" placeholder="اكتب استشارتك هنا..." class="flex-1 px-4 py-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:border-emerald-500 transition">
+                <button onclick="sendMessage()" class="px-5 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium shadow-lg shadow-emerald-600/20 transition flex items-center justify-center">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- SECTION: Lighthouse (المنارة - 100 Guidances) -->
+        <section id="sec-lighthouse" class="hidden space-y-4">
+            <div class="relative">
+                <input type="text" id="lighthouse-search" oninput="filterLighthouse()" placeholder="ابحث في التوجيهات الإيمانية والنفسية..." class="w-full px-4 py-3 pr-11 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:border-emerald-500 shadow-sm">
+                <i class="fa-solid fa-search absolute right-4 top-3.5 text-slate-400"></i>
+            </div>
+            <div id="lighthouse-list" class="space-y-3">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- SECTION: Challenges (التحديات) -->
+        <section id="sec-challenges" class="hidden space-y-4">
+            <div class="p-5 rounded-3xl bg-gradient-to-r from-teal-600 to-emerald-600 text-white shadow-md flex justify-between items-center">
+                <div>
+                    <h3 class="font-bold text-lg">تحديات 2026 للنمو</h3>
+                    <p class="text-xs text-teal-100 mt-0.5">أنجز مهامك اليومية وابنِ عادات أصيلة</p>
+                </div>
+                <div class="text-center bg-white/20 px-4 py-2 rounded-2xl backdrop-blur-md">
+                    <span id="completed-count" class="block font-extrabold text-lg">0 / 50</span>
+                    <span class="text-[10px] text-teal-100">مكتمل</span>
+                </div>
+            </div>
+            <div id="challenges-list" class="space-y-2.5">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- SECTION: Settings (الإعدادات) -->
+        <section id="sec-settings" class="hidden space-y-4">
+            <div class="p-5 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4 shadow-sm">
+                <h3 class="font-bold text-base border-b border-slate-100 dark:border-slate-800 pb-3">إعدادات التطبيق</h3>
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h4 class="font-semibold text-sm">الوضع الداكن / الفاتح</h4>
+                        <p class="text-xs text-slate-400">تبديل مظهر واجهة التطبيق</p>
+                    </div>
+                    <button onclick="toggleTheme()" class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 font-medium text-xs">تبديل</button>
+                </div>
+                <div class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+                    <div>
+                        <h4 class="font-semibold text-sm">حالة المزامنة المحلية</h4>
+                        <p class="text-xs text-slate-400">البيانات محفوظة أوفلاين بـ LocalStorage</p>
+                    </div>
+                    <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 text-xs font-bold">نشط 100%</span>
+                </div>
+                <div class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+                    <div>
+                        <h4 class="font-semibold text-sm">معلومات الإصدار</h4>
+                        <p class="text-xs text-slate-400">Future Ai v1.2.0 (نوفمبر 2026)</p>
+                    </div>
+                    <span class="text-xs text-slate-500">مستقل</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation Bar (Mobile Native Style) -->
+    <nav class="fixed bottom-0 left-0 right-0 glass-light dark:glass-dark py-2 px-4 z-40 max-w-4xl mx-auto border-t border-slate-200/50 dark:border-slate-800/50">
+        <div class="flex justify-around items-center">
+            <button onclick="switchTab('home')" id="nav-home" class="flex flex-col items-center gap-1 text-emerald-600 transition">
+                <i class="fa-solid fa-house text-lg"></i>
+                <span class="text-[10px] font-semibold">الرئيسية</span>
+            </button>
+            <button onclick="switchTab('compass')" id="nav-compass" class="flex flex-col items-center gap-1 text-slate-400 hover:text-emerald-600 transition">
+                <i class="fa-solid fa-compass text-lg"></i>
+                <span class="text-[10px] font-medium">بوصلتك</span>
+            </button>
+            <button onclick="switchTab('consultant')" id="nav-consultant" class="flex flex-col items-center gap-1 text-slate-400 hover:text-emerald-600 transition">
+                <i class="fa-solid fa-comments text-lg"></i>
+                <span class="text-[10px] font-medium">مستشارك</span>
+            </button>
+            <button onclick="switchTab('lighthouse')" id="nav-lighthouse" class="flex flex-col items-center gap-1 text-slate-400 hover:text-emerald-600 transition">
+                <i class="fa-solid fa-tower-observation text-lg"></i>
+                <span class="text-[10px] font-medium">المنارة</span>
+            </button>
+            <button onclick="switchTab('challenges')" id="nav-challenges" class="flex flex-col items-center gap-1 text-slate-400 hover:text-emerald-600 transition">
+                <i class="fa-solid fa-bullseye text-lg"></i>
+                <span class="text-[10px] font-medium">التحديات</span>
+            </button>
+            <button onclick="switchTab('settings')" id="nav-settings" class="flex flex-col items-center gap-1 text-slate-400 hover:text-emerald-600 transition">
+                <i class="fa-solid fa-gear text-lg"></i>
+                <span class="text-[10px] font-medium">الإعدادات</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Simulated Google Login Modal -->
+    <div id="login-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 max-w-sm w-full shadow-2xl border border-slate-200 dark:border-slate-800 space-y-5 animate-in fade-in zoom-in duration-200">
+            <div class="text-center space-y-2">
+                <div class="w-12 h-12 bg-emerald-500/10 text-emerald-600 rounded-2xl mx-auto flex items-center justify-center text-xl">
+                    <i class="fa-brands fa-google"></i>
+                </div>
+                <h3 class="font-bold text-lg">تسجيل الدخول بـ Google</h3>
+                <p class="text-xs text-slate-500">اختر حساباً لمزامنة تقدمك واختباراتك</p>
+            </div>
+            <div class="space-y-2">
+                <button onclick="simulateGoogleLogin('أحمد محمد', 'ahmed@gmail.com', 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100')" class="w-full p-3 rounded-2xl bg-slate-50 dark:bg-slate-800 hover:bg-emerald-50 dark:hover:bg-slate-700/80 border border-slate-200 dark:border-slate-700 flex items-center gap-3 transition text-right">
+                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100" class="w-9 h-9 rounded-full object-cover">
+                    <div>
+                        <h4 class="font-bold text-xs">أحمد محمد</h4>
+                        <span class="text-[10px] text-slate-400">ahmed@gmail.com</span>
+                    </div>
+                </button>
+                <button onclick="simulateGoogleLogin('سارة علي', 'sara@gmail.com', 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100')" class="w-full p-3 rounded-2xl bg-slate-50 dark:bg-slate-800 hover:bg-emerald-50 dark:hover:bg-slate-700/80 border border-slate-200 dark:border-slate-700 flex items-center gap-3 transition text-right">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100" class="w-9 h-9 rounded-full object-cover">
+                    <div>
+                        <h4 class="font-bold text-xs">سارة علي</h4>
+                        <span class="text-[10px] text-slate-400">sara@gmail.com</span>
+                    </div>
+                </button>
+            </div>
+            <button onclick="closeLoginModal()" class="w-full py-2.5 text-xs text-slate-500 hover:text-slate-800 dark:hover:text-white font-semibold">إلغاء</button>
+        </div>
+    </div>
+
+    <!-- JavaScript Link -->
+    <script src="app.js"></script>
+</body>
+</html>
